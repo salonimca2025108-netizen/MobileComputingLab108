@@ -1,7 +1,6 @@
 package com.example.practical2108;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.widget.Button;
 
@@ -9,28 +8,36 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button btnWebsite;
+    Button btnProvider, btnConsumer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Connect Java with XML
         setContentView(R.layout.activity_main);
 
-        // Connect Button
-        btnWebsite = findViewById(R.id.btnWebsite);
+        btnProvider = findViewById(R.id.btnProvider);
+        btnConsumer = findViewById(R.id.btnConsumer);
 
-        // Button Click
-        btnWebsite.setOnClickListener(view -> {
+        // Open Provider Module
+        btnProvider.setOnClickListener(v -> {
 
-            // Create Implicit Intent
             Intent intent = new Intent(
-                    Intent.ACTION_VIEW,
-                    Uri.parse("https://www.google.com")
+                    MainActivity.this,
+                    ProviderActivity.class
             );
 
-            // Open browser
+            startActivity(intent);
+        });
+
+        // Open Consumer Module
+        btnConsumer.setOnClickListener(v -> {
+
+            Intent intent = new Intent(
+                    MainActivity.this,
+                    ConsumerActivity.class
+            );
+
             startActivity(intent);
         });
     }

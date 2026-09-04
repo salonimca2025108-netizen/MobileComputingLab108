@@ -8,58 +8,27 @@ import android.net.Uri;
 
 public class StudentProvider extends ContentProvider {
 
-    // Authority identifies this Content Provider
     public static final String AUTHORITY =
-            "com.example.providerapp.provider";
+            "com.example.practical2108.provider";
 
-    // Content URI
     public static final Uri CONTENT_URI =
             Uri.parse(
-                    "content://" + AUTHORITY + "/students"
+                    "content://" +
+                            AUTHORITY +
+                            "/students"
             );
 
-    // Database object
     StudentDatabase database;
-
 
     @Override
     public boolean onCreate() {
 
-        database = new StudentDatabase(
-                getContext()
-        );
+        database =
+                new StudentDatabase(getContext());
 
         return true;
     }
 
-
-    // Insert student data
-    @Override
-    public Uri insert(
-            Uri uri,
-            ContentValues values) {
-
-        SQLiteDatabase db =
-                database.getWritableDatabase();
-
-        long id = db.insert(
-                StudentDatabase.TABLE_NAME,
-                null,
-                values
-        );
-
-        if (id == -1) {
-            return null;
-        }
-
-        return Uri.withAppendedPath(
-                CONTENT_URI,
-                String.valueOf(id)
-        );
-    }
-
-
-    // Read student data
     @Override
     public Cursor query(
             Uri uri,
@@ -82,8 +51,32 @@ public class StudentProvider extends ContentProvider {
         );
     }
 
+    @Override
+    public Uri insert(
+            Uri uri,
+            ContentValues values) {
 
-    // Update student data
+        SQLiteDatabase db =
+                database.getWritableDatabase();
+
+        long id =
+                db.insert(
+                        StudentDatabase.TABLE_NAME,
+                        null,
+                        values
+                );
+
+        if (id != -1) {
+
+            return Uri.withAppendedPath(
+                    CONTENT_URI,
+                    String.valueOf(id)
+            );
+        }
+
+        return null;
+    }
+
     @Override
     public int update(
             Uri uri,
@@ -102,8 +95,6 @@ public class StudentProvider extends ContentProvider {
         );
     }
 
-
-    // Delete student data
     @Override
     public int delete(
             Uri uri,
@@ -120,10 +111,9 @@ public class StudentProvider extends ContentProvider {
         );
     }
 
-
     @Override
     public String getType(Uri uri) {
 
-        return "vnd.android.cursor.dir/vnd.providerapp.student";
+        return "vnd.android.cursor.dir/vnd.student";
     }
 }
