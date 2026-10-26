@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="20dp">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="220dp"
+        android:layout_height="220dp"
+        android:src="@drawable/myimage"
+        android:scaleType="centerInside"
+        android:contentDescription="Animation Image" />
+
+    <Button
+        android:id="@+id/btnFade"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="FADE" />
+
+    <Button
+        android:id="@+id/btnRotate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ROTATE" />
+
+    <Button
+        android:id="@+id/btnBlink"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="BLINK" />
+
+    <Button
+        android:id="@+id/btnMove"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="MOVE" />
+
+</LinearLayout>
